@@ -4,7 +4,7 @@
 	require 'config.php';
 	//Assign the value from the registration page to the database
 	
-	$firstname = $_POST['firstname'];
+	$firstName = $_POST['firstname'];
 	$lastName = $_POST['lastname'];
 	$userName = $_POST['username'];
 	$password = $_POST['password'];
@@ -15,7 +15,8 @@
 
 	//Executing the insert statement to store the data into the database
 
-	$userQueryString = "INSERT INTO `user_detail`(`first_name`, `last_name`, `user_name`, `password`, `city`, `state`,`zip_code`, `age`) VALUES (?,?,?,?,?,?,?,?)";
+	$userQueryString = "INSERT INTO `user_detail`(`first_name`, `last_name`, `user_name`, `password`, `city`, `state`,`zip_code`, `age`)
+	 VALUES (?,?,?,?,?,?,?,?)";
 	//$userQueryString = "UPDATE `game` SET `gameid`= ?,`teama`= ?,`teamb`= ? WHERE gameid = 1";
 	$queryHandle = $connect->prepare($userQueryString);
 	$queryHandle->bindParam(1, $firstName);
