@@ -30,6 +30,6 @@
 	$queryHandle->execute();
 
 	// redirect the page to displauyscoreboard
-	//header("Location: profilepage.php");
+	header("Location: Home.html");
 ?>
 
