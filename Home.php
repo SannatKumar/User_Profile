@@ -4,7 +4,7 @@
 	require 'config.php';
   //Assign the value from the registration page to the database
 	//$sessionusername = $_SESSION['username'];
-	$userQueryString = "SELECT * FROM user_detail WHERE city = 'Dolares'";
+	$userQueryString = "SELECT * FROM user_detail WHERE first_name = 'Sneha'";
 	$queryHandle = $connect->prepare($userQueryString);
 	//$queryHandle->bindParam(1,$sessionusername);
 	$queryHandle->execute();
