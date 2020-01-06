@@ -1,12 +1,18 @@
 <?php
 
+  session_start();
+  if(!isset($_SESSION['logname'])){
+    exit('Direct access not Allowed.');
+    
+}
+$validateusername = $_SESSION['logname'];  
 // this script takes the team name to the database and redirects the page
 	require 'config.php';
   //Assign the value from the registration page to the database
 	//$sessionusername = $_SESSION['username'];
-	$userQueryString = "SELECT * FROM user_detail WHERE first_name = 'Sneha'";
+	$userQueryString = "SELECT * FROM user_detail WHERE user_name = ?";
 	$queryHandle = $connect->prepare($userQueryString);
-	//$queryHandle->bindParam(1,$sessionusername);
+	$queryHandle->bindParam(1,$validateusername);
 	$queryHandle->execute();
 	$row = $queryHandle->fetch();
 	$firstname = $row['first_name'];
