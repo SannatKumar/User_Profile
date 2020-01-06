@@ -8,6 +8,9 @@
 	$lastName = $_POST['lastname'];
 	$userName = $_POST['username'];
 	$password = $_POST['password'];
+
+	$hashedPassword = password_hash($password,PASSWORD_DEFAULT);
+
 	$city = $_POST['city'];
 	$state = $_POST['state'];
 	$zipCode = $_POST['zipcode'];
@@ -22,7 +25,7 @@
 	$queryHandle->bindParam(1, $firstName);
 	$queryHandle->bindParam(2, $lastName);
 	$queryHandle->bindParam(3, $userName);
-	$queryHandle->bindParam(4, $password);
+	$queryHandle->bindParam(4, $hashedPassword);
 	$queryHandle->bindParam(5, $city);
 	$queryHandle->bindParam(6, $state);
 	$queryHandle->bindParam(7, $zipCode);
@@ -30,6 +33,6 @@
 	$queryHandle->execute();
 
 	// redirect the page to displauyscoreboard
-	header("Location: Home.php");
+	header("Location: login.html");
 ?>
 
