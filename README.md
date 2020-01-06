@@ -1,7 +1,7 @@
 # User profile page
 This page takes the user details and  displays it on the Home page.
 
-Description
+# Description
 
 This is a page for the users where users input the details and create a profile page of their own. In the first page of the app, users can register with their personal details. The user details are stored in the database and displayed in their own personal page after login.
 
