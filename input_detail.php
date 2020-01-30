@@ -16,6 +16,14 @@
 	$zipCode = $_POST['zipcode'];
 	$age = $_POST['age'];
 
+	$postfile = $__FILES['pdffile'] ['name'];
+
+	$filePathPdf = 'profile_page/upload/'.$postfile;
+	move_uploaded_file($__FILES['pdffile']['tmp_name'], $filePathPdf);
+	
+
+
+
 	//Executing the insert statement to store the data into the database
 
 	$userQueryString = "INSERT INTO `user_detail`(`first_name`, `last_name`, `user_name`, `password`, `city`, `state`,`zip_code`, `age`)
@@ -33,6 +41,6 @@
 	$queryHandle->execute();
 
 	// redirect the page to displauyscoreboard
-	header("Location: login.html");
+	header("Location: imageupload.html");
 ?>
 
