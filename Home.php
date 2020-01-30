@@ -7,7 +7,9 @@
 }
 $validateusername = $_SESSION['logname'];  
 // this script takes the team name to the database and redirects the page
-	require 'config.php';
+  require 'config.php';
+  require_once __DIR__.'/vendor/autoload.php';
+  
   //Assign the value from the registration page to the database
 	//$sessionusername = $_SESSION['username'];
 	$userQueryString = "SELECT * FROM user_detail WHERE user_name = ?";
@@ -22,22 +24,37 @@ $validateusername = $_SESSION['logname'];
   $state = $row['state'];
   $zip_code = $row['zip_code'];
   $age = $row['age'];
-    
-	//Executing the insert statement to store the data into the database
 
-	//$userQueryString = "SELECT * FROM  `user_detail WHERE`(`first_name`, `last_name`, `user_name`, `password`, `city`, `state`,`zip_code`, `age`)
-	 //VALUES (?,?,?,?,?,?,?,?)";
-	//$userQueryString = "UPDATE `game` SET `gameid`= ?,`teama`= ?,`teamb`= ? WHERE gameid = 1";
-	//$queryHandle = $connect->prepare($userQueryString);
-	//$queryHandle->bindParam(1, $firstName);
-	//$queryHandle->bindParam(2, $lastName);
-	//$queryHandle->bindParam(3, $userName);
-	//$queryHandle->bindParam(4, $password);
-	//$queryHandle->bindParam(5, $city);
-	//$queryHandle->bindParam(6, $state);
-	//$queryHandle->bindParam(7, $zipCode);
-	//$queryHandle->bindParam(8, $age);
-	//$queryHandle->execute();
+
+  //creating instance for pdf 
+
+  $mpdf = new \Mpdf\Mpdf();
+
+//create  pdf
+
+$data = '';
+
+$data .= '<h1> CURRICULUM VITAE</h1>';
+
+//Add some more data
+
+$data .= '<strong>First Name</strong> '. $firstname . '<br/>';
+$data .= '<strong>Last Name</strong> '. $lastname . '<br/>';
+$data .= '<strong>UserName</strong> '. $username . '<br/>';
+$data .= '<strong>City Name</strong> '. $city . '<br/>';
+$data .= '<strong>State Name</strong> '. $state . '<br/>';
+$data .= '<strong>ZIP CODE Name</strong> '. $zip_code . '<br/>';
+$data .= '<strong>Age</strong> '. $age . '<br/>';
+
+//Writing PDF
+
+$mpdf->WriteHTML($data);
+
+
+// output to browser
+
+$mpdf->Output('myfile.pdf', 'F');
+
 
 ?>
 
@@ -78,6 +95,8 @@ $validateusername = $_SESSION['logname'];
               </div>
           </div>
   </header>
+  
+  
   <div class="alert alert-primary" role="alert">
     User Details
   </div>
@@ -98,7 +117,7 @@ $validateusername = $_SESSION['logname'];
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
+                  <?php
                         // php display team B data
                             echo '<tr>';
                             echo '<th scope="row">' . $firstname . '</th>';
@@ -109,12 +128,14 @@ $validateusername = $_SESSION['logname'];
                             echo '<td>' . $zip_code . '</td>';
                             echo '<td>' . $age. '</td>';
                             echo '</tr>';
-                        ?>
+                            ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+    
+    
 
     
 
