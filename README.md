@@ -15,6 +15,13 @@ Xampp server is used as the local web server.
 
 The database is created using phpmyadmin. MySQL.txt has the Queries that can be used to create the database.
 
+# mpdf
+
+Install composer in your system.
+Then use 
+composer require mpdf/mpdf
+
+command in your project directory terminal and it install necessary dependencies.
 
 
 
