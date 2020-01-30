@@ -5,6 +5,7 @@
         header('Location: login.html');
     }
 
+
 // this script takes the team name to the database and redirects the page
 	require 'config.php';
 	//Assign the value from the registration page to the database
@@ -33,10 +34,8 @@
         header('Location: Home.php');
         
     } else {
-        echo 'Invalid username/ password '.$username.' : '.$password;
+        $_SESSION['loginError'] = TRUE;
+        header('Location: login.html' );
     }
-
-
-
 ?>
 
